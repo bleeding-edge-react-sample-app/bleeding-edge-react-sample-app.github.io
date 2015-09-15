@@ -4,10 +4,6 @@ It used react@0.14 and react-router@1.
 
 ## Getting started
 
-Create a directory for your project and `cd` to it. Then run this command to unpack this boilerplate into the current directory.
-
-    curl -sSL https://github.com/brigand/react-no-compromise-boilerplate/archive/master.zip | tar xv --strip-components 1
-
 Fetch the dependencies. If you don't have node/npm installed I recommend [nvm].
 
 [nvm]: https://github.com/creationix/nvm
