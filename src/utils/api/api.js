@@ -18,7 +18,15 @@ export function makeRequest(method, url){
     req.set('Authorization', `JWT ${token}`);
   }
 
-  return req;
+  return req
+    .then((res) => {
+      if (res.status >= 400) {
+        return Promise.reject(res.body);
+      }
+      else {
+        return Promise.resolve(res.body);
+      }
+    });
 }
 export default {
   get: (...args) => makeRequest('get', ...args),

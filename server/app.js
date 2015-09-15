@@ -26,7 +26,10 @@ router.get('/hot/:name', (req, res) => {
 router.get('/user/:name', (req, res) => {
   var data = CACHE.users[req.params.name];
   if (data) {
-    res.send(data);
+    res.send({
+      name: req.params.name,
+      posts: data,
+    });
   }
   else {
     res.status(404).send();

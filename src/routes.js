@@ -1,11 +1,12 @@
 import React from 'react';
 import {Route} from 'react-router';
-
 import App from './App';
-import AboutPage from './pages/AboutPage/AboutPage';
+import MainLayout from './pages/MainLayout/MainLayout';
 
 export default (
-  <Route path="/" component={App}>
-    <Route path="/about" component={function(){return <div>nope</div>}} />
+  <Route component={App}>
+    <Route component={MainLayout}>
+      <Route path="/user/:id" component={require('./pages/UserPage/UserPage')} />
+    </Route>
   </Route>
 );

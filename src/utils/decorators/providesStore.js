@@ -5,7 +5,7 @@ export default function providesStore(store, Component){
 
   let propName = store.name || 'store';
   var propTypes = Component.propTypes || {};
-  var matchedPropName = Object.keys(types).find((key) => {
+  var matchedPropName = Object.keys(propTypes).find((key) => {
     return propTypes[key] && propTypes[key]._refluxStore === store;
   });
   if (matchedPropName) {
@@ -16,7 +16,7 @@ export default function providesStore(store, Component){
     constructor(){
       super();
       this.state = {
-        storeState: store.getInitialState ? store.getInitialState() : undefined,
+        storeState: store.getState ? store.getState() : undefined,
       };
     }
     componentDidMount(){
@@ -31,14 +31,15 @@ export default function providesStore(store, Component){
       return (
         <Component
           {...this.props}
-          {{[propName]: this.state.storeState}}
-        />;
+          {...{[propName]: this.state.storeState}}
+        />
       );
     }
   };
 }
 
-providesStore.getPropType(store){
+providesStore.getPropType = (store) => {
   var type = (...args) => PropTypes.any(...args);
   type._refluxStore = store;
+  return type;
 }
