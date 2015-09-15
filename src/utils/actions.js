@@ -15,19 +15,19 @@ export const State = Reflux.createActions([
 Feeds.get.listen(({board, type}) => {
   api.get('/r/' + board + '/' + type)
   .then((data) => {
-    var results = data.map((item) => ({
-      id: item.id,
-      url: item.url,
-      title: item.title,
-      author: item.author,
-      text: item.selftext,
-      board: item.subreddit,
-      createdAt: item.created_utc * 1000,
-      image: image,
+    var results = data.map(({data}) => ({
+      id: data.id,
+      url: data.url,
+      title: data.title,
+      author: data.author,
+      text: data.selftext,
+      board: data.subreddit,
+      createdAt: data.created_utc * 1000,
+      image: data.image,
     }));
-    return results;
+    return {results, type, board};
   })
-  .then(Feed.get.completed, Feed.get.failed);
+  .then(Feeds.get.completed, Feeds.get.failed);
 });
 
 Users.get.listen((id) => {

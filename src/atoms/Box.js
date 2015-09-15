@@ -56,6 +56,9 @@ class Box extends React.Component {
   };
 
   shouldComponentUpdate(nextProps){
+    return true;
+
+    // disabled for now due to weird bug
     return shallowCompareWithChildrenId(this.props, nextProps);
   }
 

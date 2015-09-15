@@ -7,6 +7,7 @@ export default (
   <Route component={App}>
     <Route component={MainLayout}>
       <Route path="/user/:id" component={require('./pages/UserPage/UserPage')} />
+      <Route path="/r/:id" component={require('./pages/BoardPage/BoardPage')} />
     </Route>
   </Route>
 );

@@ -14,7 +14,7 @@ class SubBoardHeader extends React.Component {
 
   render(){
     var Component = this.getComponent();
-
+    
     return (
       <Box grow="1">
         <Component name={this.props.boardName} />

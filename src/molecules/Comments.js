@@ -25,7 +25,6 @@ class Comments extends React.Component {
     return (
       <Box>
         {this.props.comments.map((comment) => {
-          console.log(comment);
           return (
             <Box
               key={comment.id}

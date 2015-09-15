@@ -3,12 +3,12 @@ import Box from './Box';
 
 export default
 class Text extends React.Component {
-  static propTypes = Object.assign({}, Box.propTypes, {
+  static propTypes = {
     children: PropTypes.any,
     size: PropTypes.string,
     color: PropTypes.string,
     weight: PropTypes.string,
-  })
+  };
 
   static defaultProps = {
     size: 'inherit',
@@ -21,11 +21,10 @@ class Text extends React.Component {
       size, style, color, weight,
     ...props} = this.props;
     return (
-      <Box
+      <span
         inline
         {...props}
         style={Object.assign({weight, color, fontSize: size}, style)}
-        childrenKey={this.props.children}
       />
     );
   }

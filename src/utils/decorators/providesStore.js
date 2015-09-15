@@ -13,6 +13,7 @@ export default function providesStore(store, Component){
   }
 
   return class StoreProvider extends React.Component {
+    static propTypes = Object.assign({}, Component.propTypes, {[propName]: () => {}});
     constructor(){
       super();
       this.state = {

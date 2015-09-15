@@ -17,6 +17,7 @@ class Post extends React.Component {
 
   render(){
     var item = this.props.data;
+    // console.log(item);
     return (
       <Box grow="1" padding="1em" style={{width: '100%'}}>
         <Heading level="title">
