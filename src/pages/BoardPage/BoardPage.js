@@ -6,7 +6,15 @@ import {State} from '../../utils/actions';
 export default
 class BoardPage extends React.Component {
   componentWillMount(){
-    State.changeBoard({type: 'user', name: this.props.params.id});
+    this.updateBoard(this.props.params.id);
+  }
+  componentWillUpdate(nextProps){
+    if (nextProps.params.id !== this.props.params.id) {
+      this.updateBoard(nextProps.params.id);
+    }
+  }
+  updateBoard(id){
+    State.changeBoard({type: 'board', name: id});
   }
   render(){
     return (

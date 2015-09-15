@@ -4,6 +4,7 @@ import Box from '../atoms/Box';
 // board types
 import SubBoardHeaderNone from './SubBoardHeaders/SubBoardHeaderNone';
 import SubBoardHeaderUser from './SubBoardHeaders/SubBoardHeaderUser';
+import SubBoardBoard from './SubBoardHeaders/SubBoardBoard';
 
 export default
 class SubBoardHeader extends React.Component {
@@ -14,7 +15,7 @@ class SubBoardHeader extends React.Component {
 
   render(){
     var Component = this.getComponent();
-    
+
     return (
       <Box grow="1">
         <Component name={this.props.boardName} />
@@ -26,6 +27,9 @@ class SubBoardHeader extends React.Component {
     var {boardType, boardName} = this.props;
     if (boardType === 'user') {
       return SubBoardHeaderUser;
+    }
+    if (boardType === 'board') {
+      return SubBoardBoard;
     }
     return SubBoardHeaderNone;
   }

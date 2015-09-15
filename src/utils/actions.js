@@ -41,3 +41,7 @@ Users.getComments.listen((user) => {
     Users.getComments.completed({user: user, comments: res.map((x) => x.data)});
   }, Users.getComments.failed);
 });
+
+State.changeBoard.listen(({name}) => {
+  document.title = `${name} | EdgeBoard`;
+})
