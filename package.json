@@ -28,7 +28,9 @@
     "react-addons-update": "^0.14.0-rc1",
     "react-dom": "^0.14.0-rc1",
     "react-router": "^1.0.0-rc1",
-    "reflux-core": "^0.2.1"
+    "reflux-core": "^0.2.1",
+    "superagent": "^1.4.0",
+    "superagent-promise": "^1.0.3"
   },
   "devDependencies": {
     "axios": "^0.5.4",
