@@ -68,6 +68,10 @@ function runWebpackDevServer(){
 function runMainServer(){
   const app = express();
   const apiRouter = express.Router();
+
+  // load the api server
+  apiRouter.use(require('../server/app.js'));
+  
   const urlParts = url.parse(appConfig.mainUrl);
   app.use('/api', apiRouter);
 

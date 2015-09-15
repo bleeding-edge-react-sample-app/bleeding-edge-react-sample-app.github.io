@@ -6,6 +6,6 @@ import AboutPage from './pages/AboutPage/AboutPage';
 
 export default (
   <Route path="/" component={App}>
-    <Route path="/about" component={AboutPage} />
+    <Route path="/about" component={function(){return <div>nope</div>}} />
   </Route>
 );

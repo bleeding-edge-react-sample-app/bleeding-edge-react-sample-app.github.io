@@ -74,6 +74,7 @@ setupWebpack().then((compiler) => {
 });
 
 function runMocha(){
+  console.log('Running mocha');
   var mochaOpts = ['--compilers', 'js:babel/register'];
 
   mochaOpts.push(OUT.path);

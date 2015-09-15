@@ -15,6 +15,7 @@ async function getContent(name){
   }
 
   var results = data.map((item) => ({
+    id: item.id,
     url: item.url,
     title: item.title,
     author: item.author,
@@ -24,7 +25,7 @@ async function getContent(name){
     image: image,
   }));
   console.log(results);
-  return data;
+  return results;
 }
 
 async function run(){
