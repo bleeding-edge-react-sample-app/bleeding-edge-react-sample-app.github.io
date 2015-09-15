@@ -56,14 +56,5 @@ Read more about this in the README.md in the [atoms], [molecules], [organisms], 
 
 ## Flux
 
-There is **no** flux library included. I don't believe this is a decision that can be made for you, even whether to use flux or something else.
-
-Reflux, Redux, and Alt are all good options.
-
-> TODO: Some basic api tools are included (src/utils).
-
-## Already have an api server?
-
-> TODO: Pass `--proxy http://myurl/api` and the development server will proxy requests to `/api` to your server. Or run with `--only-dev-server` and you just have to make sure your main server links to bundle.js correctly (default: `localhost:8081/public/bundle.js`).
-
+The flux library used here is reflux. It's simple but powerful.
 
