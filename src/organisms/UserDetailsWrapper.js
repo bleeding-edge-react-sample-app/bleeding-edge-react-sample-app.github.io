@@ -12,6 +12,12 @@ class UserDetailsWrapper extends React.Component {
     userId: PropTypes.string.isRequired,
   };
 
+  componentWillReceiveProps(nextProps){
+    if (!this.props.users[nextProps.userId]) {
+      Users.get(nextProps.userId);
+    }
+  }
+
   componentDidMount(){
     if (!this.props.users[this.props.userId]) {
       Users.get(this.props.userId);

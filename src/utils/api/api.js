@@ -2,7 +2,7 @@ import {Promise} from 'bluebird';
 import superagent from 'superagent';
 import superagentPromise from 'superagent-promise';
 export const agent = superagentPromise(superagent, Promise);
-const API_ROOT = '/api';
+const API_ROOT = 'https://api.reddit.com';
 
 // api token
 const TOKEN_KEY = 'authorizationToken';
@@ -29,7 +29,13 @@ export function makeRequest(method, url){
     });
 }
 export default {
-  get: (...args) => makeRequest('get', ...args),
+  get: (...args) => makeRequest('get', ...args)
+    .then((res) => {
+      if (res.kind === 'Listing') {
+        return res.data.children;
+      }
+      return res;
+    }),
   post: (...args) => makeRequest('post', ...args),
   put: (...args) => makeRequest('put', ...args),
   delete: (...args) => makeRequest('delete', ...args),

@@ -30,14 +30,14 @@ class DemoPage extends React.Component {
     return (
       <Box>
         <Box>
-          <Box flex="1" direction="row">
+          <Box grow="1" direction="row">
             {links.map((link) => (
-              <Box padding="0.5em" key={link.path}>
+              <Box padding="0.5em" key={link.path} grow="1">
                 <a href={link.path}>{link.text}</a>
               </Box>
             ))}
           </Box>
-          <Box flex="3">
+          <Box grow="3">
             {this.props.children}
           </Box>
         </Box>
@@ -56,20 +56,20 @@ function makeRouteForComponent(name, Component, ...examples){
       <Box>
         {examples.map((props, i) => (
           <Box direction="row" key={i}
-            margin="1em" flex={1}
+            margin="1em" grow="1"
             style={{
               borderWidth: '1px',
               justifyContent: 'space-between',
               background: 'hsla(0,0%,98%,1)',
               alignItems: 'flex-start',
             }} >
-            <Box margin="1em" flex={1} style={{
+            <Box margin="1em" grow="1" style={{
               background: 'white',
               boxShadow: '0 0 3px rgba(0,0,0,0.3)',
             }}>
               <Component {...props} />
             </Box>
-            <Box margin="1em" flex={1}>
+            <Box margin="1em" grow="1">
               <pre>{util.inspect(props, {depth: 4})}</pre>
             </Box>
           </Box>

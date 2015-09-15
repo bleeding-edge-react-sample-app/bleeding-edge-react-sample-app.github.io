@@ -12,6 +12,7 @@ class UserPage extends React.Component {
     return (
       <Box>
         <UserDetailsWrapper userId={this.props.params.id} />
+        
       </Box>
     );
   }

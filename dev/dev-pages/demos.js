@@ -36,4 +36,20 @@ export default {
     {children: 'Simple Link', to: '/'},
     {children: 'Simple Link', to: '/', unstyled: true},
   ],
+
+  // molecules
+  Post: [
+    require('../../src/molecules/Post/Post'),
+    {
+      data: {
+      "id": "3kz0sp",
+      "url": "http://i.imgur.com/myBFSlT.gifv",
+      "title": "Hydrographic flames applied to a helmet",
+      "author": "Deadlypaper",
+      "text": "",
+      "board": "gifs",
+      "createdAt": 1442271983000
+      }
+    },
+  ],
 };
