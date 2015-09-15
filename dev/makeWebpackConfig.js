@@ -22,7 +22,13 @@ export default function makeWebpackConfig(opts){
     module: {
       loaders: []
     },
-    plugins: [],
+    plugins: [
+      new webpack.DefinePlugin({
+        __DEV__: String(!opts.production),
+        __PROD__: String(!!opts.production),
+        'process.env.NODE_ENV': JSON.stringify(opts.production ? 'production' : 'development'),
+      })
+    ],
   };
 
   // mostly used for tests
