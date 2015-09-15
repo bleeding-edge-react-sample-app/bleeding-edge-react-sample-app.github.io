@@ -13,7 +13,9 @@ class HotThreadsWrapper extends React.Component {
   };
 
   componentWillReceiveProps(nextProps){
-    this.doUpdate(nextProps.boardId);
+    if (nextProps.boardId !== this.props.boardId) {
+      this.doUpdate(nextProps.boardId);
+    }
   }
 
   componentDidMount(){
