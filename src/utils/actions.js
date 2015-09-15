@@ -2,7 +2,8 @@ import Reflux from 'reflux-core';
 import api from './api/api';
 
 export const Users = {
-  get: Reflux.createAction({asyncResult: true})
+  get: Reflux.createAction({asyncResult: true}),
+  getComments: Reflux.createAction({asyncResult: true}),
 }
 export const Feeds = {
   get: Reflux.createAction({asyncResult: true})
@@ -33,4 +34,10 @@ Users.get.listen((id) => {
   api.get(`user/${id}/about`).then((res) => {
     Users.get.completed(res.data);
   }, Users.get.failed);
+});
+
+Users.getComments.listen((user) => {
+  api.get(`user/${user}/comments`).then((res) => {
+    Users.getComments.completed({user: user, comments: res.map((x) => x.data)});
+  }, Users.getComments.failed);
 });
