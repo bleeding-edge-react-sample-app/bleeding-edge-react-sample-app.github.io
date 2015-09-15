@@ -1,0 +1,24 @@
+#!/usr/bin/env babel-node
+
+import yargs from 'yargs';
+import Promise, {promisifyAll} from 'bluebird';
+import path from 'path';
+
+const {argv} = yargs
+  .usage('gen src/path/to/File.js')
+  .demand(1);
+
+// GLOBALS
+global.Promise = Promise;
+global.argv = argv;
+
+// FIXME: this is pretty bad, how to rearchitect?
+const {run, filePath} = require('./tool-gen/common');
+
+/** File pattern matching **/
+if (false) {}
+else if (/src\/atoms\/.*__test__/.test(filePath)) run('genAtomTest');
+else if (/src\/atoms\//.test(filePath)) run('genAtom');
+else {
+  console.error('No match for ' + filePath);
+}

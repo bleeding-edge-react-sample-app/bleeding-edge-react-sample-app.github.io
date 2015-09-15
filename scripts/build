@@ -1,0 +1,35 @@
+#!/usr/bin/env babel-node
+import webpack from 'webpack';
+import makeWebpackConfig from '../dev/makeWebpackConfig';
+import getConfig from '../dev/getConfig';
+import yargs from 'yargs';
+
+const {argv} = yargs
+  .help('h').alias('h', 'help')
+  .describe('asset-url', 'where assets are to be served from')
+  .describe('main-url', 'the main web server root')
+  .boolean('prod').describe('prod', 'do a production build')
+  .boolean('dev').describe('dev', 'do a development build (default)')
+
+
+var config = {
+  devServer: false,
+  production: argv.prod,
+  watch: false,
+};
+if (argv.assetUrl) config.assetUrl = argv.assetUrl;
+if (argv.mainUrl) config.mainUrl = argv.mainUrl;
+
+const webpackConfig = makeWebpackConfig(getConfig(config));
+console.error('Building with config', webpackConfig);
+console.error('Building with opts', config);
+
+var compiler = webpack(Object.assign({}, webpackConfig));
+compiler.run((err, stats) => {
+  if (err) {
+    console.error('Build failed!');
+    console.error(err);
+    process.exit(7);
+  }
+  console.error('Build success!');
+});

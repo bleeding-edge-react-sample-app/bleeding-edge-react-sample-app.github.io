@@ -1,0 +1,46 @@
+#!/usr/bin/env babel-node
+import Promise from 'bluebird';
+import fs from 'fs';
+global.Promise = Promise;
+import axios from 'axios';
+
+async function getContent(name){
+  var res = await axios.get(`https://api.reddit.com/r/${name}/hot`);
+  var data = res.data.data.children.map((child) => child.data);
+  console.log(data);
+  var image;
+
+  if (data.preview && data.preview.images.length) {
+    image = data.preview.images[0].source;
+  }
+
+  var results = data.map((item) => ({
+    url: item.url,
+    title: item.title,
+    author: item.author,
+    text: item.selftext,
+    board: item.subreddit,
+    createdAt: item.created_utc * 1000,
+    image: image,
+  }));
+  console.log(results);
+  return data;
+}
+
+async function run(){
+  var boards = ['gifs', 'news', 'technology', 'javascript', 'reactjs'];
+  boards
+    .map(async (name) => {
+      var data = await getContent(name);
+      var writeFile = Promise.promisify(fs.writeFile);
+      return writeFile(`fixtures/reddit-hot-${name}.json`, JSON.stringify(data, null, 2), 'utf8');
+    })
+    .map((p, i) => {
+      return p.catch((err) => {
+        console.error(`Error at getContent('${boards[i]}')`);
+        console.error(err)
+      });
+    });
+}
+
+run();

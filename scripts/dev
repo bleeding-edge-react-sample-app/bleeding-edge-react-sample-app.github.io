@@ -1,0 +1,3 @@
+#!/bin/bash
+
+$(npm bin)/babel-node dev/server.js "$@"

@@ -1,0 +1,17 @@
+@import '../variables.less';
+
+.LinkAtom {
+  text-decoration: none;
+  color: inherit;
+
+  &--styled, &--styled:visited {
+    color: @secondaryColorDark;
+    text-decoration: underline;
+
+    &:hover {
+      color: @primaryColorDark;
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+      text-decoration: underline;
+    }
+  }
+}
