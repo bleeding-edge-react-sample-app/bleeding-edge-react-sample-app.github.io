@@ -1,5 +1,5 @@
 import Reflux from 'reflux-core';
-import {Feeds} from '../utils/actions';
+import {State, Feeds} from '../utils/actions';
 
 const getInitialState = () => ({
   board: null,
@@ -16,12 +16,11 @@ const HotThreadsStore = Reflux.createStore({
   },
 
   startedGet({board, type}){
-    console.log({board, type})
-    if (type !== 'hot') return;
+    if (type !== 'hot' || board === this.state.board) return;
 
     this.state = getInitialState();
+    this.state.board = name;
     this.state.loading = true;
-    this.state.board = board;
     this.trigger(this.getState());
   },
 
@@ -30,7 +29,7 @@ const HotThreadsStore = Reflux.createStore({
   },
 
   onGetFeed({type, results, board}){
-    if (type === 'hot') {
+    if (type === 'hot'){
       this.state = {
         board, type, threads: results, loading: false,
       };

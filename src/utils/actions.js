@@ -42,6 +42,10 @@ Users.getComments.listen((user) => {
   }, Users.getComments.failed);
 });
 
-State.changeBoard.listen(({name}) => {
+State.changeBoard.listen(({type, name}) => {
   document.title = `${name} | EdgeBoard`;
+
+  if (type === 'board') {
+    Feeds.get({board: name, type: 'hot'});
+  }
 })

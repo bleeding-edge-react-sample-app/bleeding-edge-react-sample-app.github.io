@@ -14,7 +14,7 @@ class HotThreadsWrapper extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if (nextProps.boardId !== this.props.boardId) {
-      this.doUpdate(nextProps.boardId);
+      this.needsUpdate = true;
     }
   }
 
@@ -22,15 +22,22 @@ class HotThreadsWrapper extends React.Component {
     this.doUpdate(this.props.boardId);
   }
 
+  componentDidUpdate(){
+    if (this.needsUpdate) {
+      this.needsUpdate = false;
+      this.doUpdate(this.props.boardId);
+    }
+  }
+
   doUpdate(boardId){
-    if (!this.props.store.loading && this.props.store.board !== boardId) {
+    if (this.props.store.board !== boardId) {
       Feeds.get({type: 'hot', board: this.props.boardId});
     }
   }
 
   render(){
-    var {threads, loading} = this.props.store;
-    if (loading) {
+    var {board, threads, loading} = this.props.store;
+    if (loading || board !== this.props.boardId) {
       return null;
     }
 
