@@ -12,6 +12,7 @@ class TextInput extends React.Component {
     onChange: PropTypes.func,
     value: PropTypes.string,
     label: PropTypes.string,
+    tag: PropTypes.oneOf(['input', 'textarea']),
     direction: PropTypes.oneOf(['row', 'column']),
   };
 
@@ -19,22 +20,24 @@ class TextInput extends React.Component {
     onChange: () => {},
     direction: 'row',
     type: 'text',
+    tag: 'input',
   };
 
   render(){
     var {
       value, onChange, type, className,
-      style, direction,
+      style, direction, tag,
       ...props
     } = this.props;
     return (
       <Box {...{style, direction}}>
         {this.props.label && <Text className="TextInputAtom__Label">{this.props.label}</Text>}
-        <input
+        <this.props.tag
           type={type}
           value={value}
           className={`TextInputAtom__Input ${className}`}
           onChange={(e) => onChange(e.target.value)}
+          style={style}
           {...props}
         />
       </Box>

@@ -10,6 +10,9 @@ export const Feeds = {
 }
 export const State = Reflux.createActions([
   'changeBoard',
+  'setEditing',
+  'clearEditing',
+  'endEditing',
 ]);
 
 Feeds.get.listen(({board, type}) => {

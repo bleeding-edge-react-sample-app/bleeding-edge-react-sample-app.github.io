@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {Feeds} from '../utils/actions';
+import {Feeds, State} from '../utils/actions';
 import providesStore from '../utils/decorators/providesStore';
 import HotThreadsStore from '../stores/HotThreadsStore';
 import ThreadList from '../molecules/ThreadList';
@@ -20,6 +20,9 @@ class HotThreadsWrapper extends React.Component {
 
   componentDidMount(){
     this.doUpdate(this.props.boardId);
+    State.setEditing({
+      type: 'post',
+    });
   }
 
   componentDidUpdate(){
