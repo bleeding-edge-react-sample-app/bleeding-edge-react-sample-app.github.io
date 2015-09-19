@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./scripts/dev --main-url http://local.bleedingedge.com:8080 --asset-url http://local.bleedingedge.com:8081/public
+
