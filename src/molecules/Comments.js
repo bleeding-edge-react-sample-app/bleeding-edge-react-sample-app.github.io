@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import Box from '../atoms/Box';
 import Heading from '../atoms/Heading';
 import Link from '../atoms/Link';
+import Markdown from '../atoms/Markdown';
 
 export default
 class Comments extends React.Component {
@@ -38,7 +39,7 @@ class Comments extends React.Component {
                 <Heading level="title">{comment.score_hidden ? '?' : comment.score}</Heading>
                 <Box margin={{right: "1em"}} />
                 <Box style={{maxWidth: '80em', lineHeight: '1.5'}}>
-                  <span>{comment.body}</span>
+                  <Markdown content={comment.body} />
                 </Box>
               </Box>
               <Box margin={{top: '0.5em'}}>

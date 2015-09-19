@@ -5,12 +5,19 @@ import CurrentlyEditingStore from '../stores/CurrentlyEditingStore';
 import Box from '../atoms/Box';
 import TextInput from '../atoms/TextInput';
 
+import CommentEditor from '../molecules/Editors/CommentEditor';
+
 export default
 @providesStore(CurrentlyEditingStore)
 class EditingPaneWrapper extends React.Component {
   static propTypes = {
     store: providesStore.getPropType(CurrentlyEditingStore),
   };
+
+  constructor(){
+    super();
+    this.state = {value: null};
+  }
 
   render(){
     var style = {
@@ -33,17 +40,15 @@ class EditingPaneWrapper extends React.Component {
   renderContent(){
     if (!this.props.store) return null;
 
+    var Component = {
+      comment: CommentEditor,
+    }[this.props.store.type];
+
     return (
-      <Box grow="1">
-        <TextInput
-          label="Your comment"
-          tag="textarea"
-          value="testing"
-          direction="column"
-          onChange={() => {}}
-          style={{flexGrow: '1'}}
-        />
-      </Box>
+      <Component
+        value={this.state.value}
+        onChange={(value) => this.setState({value})}
+      />
     );
   }
 }

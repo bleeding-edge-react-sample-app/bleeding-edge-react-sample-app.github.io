@@ -25,6 +25,28 @@ export default {
     {children: 'Primary', which: 'primary'},
     {children: 'Secondary', which: 'secondary'},
   ],
+  Markdown: [
+    require('../../src/atoms/Markdown'),
+    {content: `
+# This is an example
+
+cool <b>bold</b> tags and \`code\` and stuff
+
+    code
+    block
+
+> and quotes
+
+ - apples
+ - oranges
+
+XSS
+
+<img onerror="console.log('HAX')" src="/jqwijdqj">
+
+`},
+  ],
+
   Heading: [
     require('../../src/atoms/Heading'),
     {children: 'Title', level: 'title'},
