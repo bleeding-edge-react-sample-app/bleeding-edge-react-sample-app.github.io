@@ -22,7 +22,6 @@ class Text extends React.Component {
     ...props} = this.props;
     return (
       <span
-        inline
         {...props}
         style={Object.assign({weight, color, fontSize: size}, style)}
       />

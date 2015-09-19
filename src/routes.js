@@ -6,6 +6,7 @@ import MainLayout from './pages/MainLayout/MainLayout';
 export default (
   <Route component={App}>
     <Route component={MainLayout}>
+      <Route path="/" component={require('./pages/HomePage/HomePage')} />
       <Route path="/user/:id" component={require('./pages/UserPage/UserPage')} />
       <Route path="/r/:id" component={require('./pages/BoardPage/BoardPage')} />
     </Route>
