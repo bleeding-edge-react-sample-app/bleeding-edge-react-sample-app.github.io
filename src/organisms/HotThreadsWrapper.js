@@ -20,9 +20,9 @@ class HotThreadsWrapper extends React.Component {
 
   componentDidMount(){
     this.doUpdate(this.props.boardId);
-    State.setEditing({
-      type: 'comment',
-    });
+    // State.setEditing({
+    //   type: 'comment',
+    // });
   }
 
   componentDidUpdate(){
