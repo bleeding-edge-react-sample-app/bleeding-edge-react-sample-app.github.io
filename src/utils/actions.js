@@ -16,7 +16,7 @@ export const State = Reflux.createActions([
 ]);
 
 Feeds.get.listen(({board, type}) => {
-  api.get('/r/' + board + '/' + type)
+  api.get('r/' + board + '/' + type)
   .then((data) => {
     var results = data.map(({data}) => ({
       id: data.id,
