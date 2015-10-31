@@ -26,6 +26,7 @@ class Comments extends React.Component {
     return (
       <Box>
         {this.props.comments.map((comment) => {
+          var replies = comment.replies || [];
           return (
             <Box
               key={comment.id}
@@ -47,6 +48,7 @@ class Comments extends React.Component {
                   by <Link to={`/user/${comment.author}`}>{comment.author}</Link>
                 </span>
               </Box>
+              <Comments comments={replies} />
             </Box>
           );
         })}

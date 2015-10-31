@@ -9,6 +9,7 @@ export default (
       <Route path="/" component={require('./pages/HomePage/HomePage')} />
       <Route path="/user/:id" component={require('./pages/UserPage/UserPage')} />
       <Route path="/r/:id" component={require('./pages/BoardPage/BoardPage')} />
+      <Route path="/item/:id" component={require('./pages/DetailsPage/DetailsPage')} />
     </Route>
   </Route>
 );

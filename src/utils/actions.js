@@ -8,6 +8,9 @@ export const Users = {
 export const Feeds = {
   get: Reflux.createAction({asyncResult: true})
 }
+export const Details = {
+  get: Reflux.createAction({asyncResult: true})
+}
 export const State = Reflux.createActions([
   'changeBoard',
   'setEditing',
@@ -31,6 +34,36 @@ Feeds.get.listen(({board, type}) => {
     return {results, type, board};
   })
   .then(Feeds.get.completed, Feeds.get.failed);
+});
+
+Details.get.listen(({id}) => {
+  api.get('comments/' + id)
+  .then((body) => {
+    var comments = body.map((x) => x.data.children)
+      .reduce((xs, x) => xs.concat(x), [])
+      .map((x) => x.data);
+    var cleanComments = comments.map(function clean(x) {
+      var res = {
+        body: x.body || x.selftext,
+        score_hidden: x.score_hidden,
+        replies: [],
+        author: x.author,
+        id: x.id,
+        score: x.score,
+      };
+
+      if (x.replies) {
+        res.replies = x.replies.data.children
+          .map((x) => x.data)
+          .map(clean);
+      }
+
+      return res;
+    });
+
+    return cleanComments;
+  })
+  .then(Details.get.completed, Details.get.failed);
 });
 
 Users.get.listen((id) => {
