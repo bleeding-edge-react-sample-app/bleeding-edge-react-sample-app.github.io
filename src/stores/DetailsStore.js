@@ -26,7 +26,6 @@ const HotThreadsStore = Reflux.createStore({
   },
 
   onGetDetails(comments){
-    console.log('onget', arguments[0])
     this.state = {
       loading: false,
       comments: comments,

@@ -12,7 +12,6 @@ class Markdown extends React.Component {
 
   render(){
     var res = {__html: marked(this.props.content, {sanitize: true})};
-    console.log(res);
     return (
       <div className="MarkdownAtom" dangerouslySetInnerHTML={res} />
     );

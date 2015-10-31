@@ -37,7 +37,6 @@ class DetailsWrapper extends React.Component {
 
   render(){
     var {loading, id, comments} = this.props.store;
-    console.log(this.props.store, this.props.id)
     if (loading || id !== this.props.id) {
       return null;
     }

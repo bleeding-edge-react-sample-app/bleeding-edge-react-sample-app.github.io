@@ -9,7 +9,6 @@ class Details extends React.Component {
   };
 
   render(){
-    console.log(this.props.comments);
     return (
       <Box>
         Details!
