@@ -9,15 +9,39 @@ export default
 class Comments extends React.Component {
   static propTypes = {
     comments: PropTypes.array.isRequired,
+    goodScoreThreshold: PropTypes.number,
   };
 
   getGoodScoreThreshold(){
-    var commentScores = this.props.comments
-      .filter((x) => !x.score_hidden)
-      .map((x) => x.score)
+    if (this.props.goodScoreThreshold) {
+      return this.props.goodScoreThreshold;
+    }
+
+    // recursively get the comment scores
+    const getScores = (comments) => {
+      if (!comments) return [];
+
+      var scores = comments
+        .filter((x) => !x.score_hidden)
+        .map((x) => [
+          x.score,
+          getScores(x.replies),
+        ])
+        .reduce((as, bs) => as.concat(bs), [])
+      return scores;
+    }
+    var commentScores = getScores(this.props.comments)
       .sort((a, b) => a - b);
-    var good = commentScores[Math.floor(commentScores.length * 0.8)];
-    return good > 1 ? good : Infinity;
+
+    // find a good threshold
+    var goal = 0.6, good = 0;
+
+    while (goal < 1 && good <= 3) {
+      good = commentScores[Math.floor(commentScores.length * goal)];
+      console.log(good);
+      goal += 0.05;
+    }
+    return good > 3 ? good : Infinity;
   }
 
   render(){
@@ -34,7 +58,7 @@ class Comments extends React.Component {
               padding="0.5em"
               margin="0.5em"
               style={{
-                background: comment.score >= targetScore ? '#ffff55' : '#efefef'
+                background: comment.score >= targetScore ? '#ffffaa' : '#efefef'
               }}
             >
               <Box direction="row">
@@ -61,7 +85,7 @@ class Comments extends React.Component {
                   Reply
                 </Box>
               </Box>
-              <Comments comments={replies} />
+              <Comments comments={replies} goodScoreThreshold={targetScore} />
             </Box>
           );
         })}
