@@ -1,5 +1,5 @@
 {
-    "stage": "1",
-    "optional": ["es7.classProperties"]
+    "presets": ["es2015", "react", "stage-1"],
+    "plugins": ["syntax-class-properties"]
 }
 
