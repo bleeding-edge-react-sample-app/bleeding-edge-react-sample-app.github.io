@@ -38,7 +38,6 @@ class Comments extends React.Component {
 
     while (goal < 1 && good <= 3) {
       good = commentScores[Math.floor(commentScores.length * goal)];
-      console.log(good);
       goal += 0.05;
     }
     return good > 3 ? good : Infinity;
