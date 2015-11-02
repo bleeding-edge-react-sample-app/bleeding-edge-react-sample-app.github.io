@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env ./node_modules/.bin/babel-node
 import webpack from 'webpack';
 import makeWebpackConfig from '../dev/makeWebpackConfig';
 import getConfig from '../dev/getConfig';
