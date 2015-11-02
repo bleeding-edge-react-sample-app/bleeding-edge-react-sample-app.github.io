@@ -3,6 +3,7 @@ import Box from '../atoms/Box';
 import Heading from '../atoms/Heading';
 import Link from '../atoms/Link';
 import Markdown from '../atoms/Markdown';
+import {State} from '../utils/actions';
 
 export default
 class Comments extends React.Component {
@@ -43,10 +44,22 @@ class Comments extends React.Component {
                   <Markdown content={comment.body} />
                 </Box>
               </Box>
-              <Box margin={{top: '0.5em'}}>
+              <Box margin={{top: '0.5em'}} direction="row">
                 <span>
                   by <Link to={`/user/${comment.author}`}>{comment.author}</Link>
                 </span>
+                <Box
+                  margin="0 1em"
+                  onClick={() => {
+                    State.setEditing({
+                      type: 'comment',
+                      id: comment.id,
+                    })
+                  }}
+                  style={{cursor: 'pointer'}}
+                >
+                  Reply
+                </Box>
               </Box>
               <Comments comments={replies} />
             </Box>

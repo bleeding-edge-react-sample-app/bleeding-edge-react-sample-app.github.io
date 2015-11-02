@@ -20,8 +20,13 @@ class CommentEditor extends React.Component {
           onChange={(e) => {
             this.props.onChange({text: e.target.value, type: 'comment'})
           }}
-          style={{flexGrow: '1'}}
-        />
+          style={{flexGrow: '1'}} />
+        <Box
+          style={{position: 'absolute', top: '0', right: '0.5em'}}
+          onClick={() => this.props.onDismiss()}
+        >
+          x
+        </Box>
       </Box>
     );
   }
