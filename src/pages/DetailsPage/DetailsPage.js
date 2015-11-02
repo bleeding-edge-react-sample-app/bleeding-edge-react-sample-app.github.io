@@ -14,7 +14,7 @@ class DetailsPage extends React.Component {
     }
   }
   updateBoard(id){
-    State.changeBoard({type: 'details', name: id});
+    State.changeBoard({type: 'details', name: 'Details'});
   }
   render(){
     return (

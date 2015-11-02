@@ -6,6 +6,7 @@ import SubBoardHeaderNone from './SubBoardHeaders/SubBoardHeaderNone';
 import SubBoardHeaderUser from './SubBoardHeaders/SubBoardHeaderUser';
 import SubBoardHeaderHome from './SubBoardHeaders/SubBoardHeaderHome';
 import SubBoardBoard from './SubBoardHeaders/SubBoardBoard';
+import SubBoardDetails from './SubBoardHeaders/SubBoardDetails';
 
 export default
 class SubBoardHeader extends React.Component {
@@ -34,6 +35,9 @@ class SubBoardHeader extends React.Component {
     }
     if (boardType === 'board') {
       return SubBoardBoard;
+    }
+    if (boardType === 'details') {
+      return SubBoardDetails;
     }
     return SubBoardHeaderNone;
   }
