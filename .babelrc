@@ -1,5 +1,8 @@
 {
-    "stage": "1",
-    "optional": ["es7.classProperties"]
+  "presets": ["es2015", "stage-1", "react"],
+  "plugins": [
+      "add-module-exports",
+      "transform-class-properties",
+      "transform-decorators-legacy"
+  ]
 }
-
