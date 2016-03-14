@@ -1,10 +1,11 @@
-import {expect} from 'chai';
 import {inspect} from 'util';
+
 import scwci from '../shallowCompareWithChildrenId';
+jest.unmock('../shallowCompareWithChildrenId');
 
 describe('shallowCompareWithChildrenId', () => {
   const format = (args) => '\n' + args.map((x) => inspect(x)).join('\n') + '\n';
-  const test = (res, ...args) => expect(scwci(...args)).to.equal(res, format(args));
+  const test = (res, ...args) => expect(scwci(...args)).toEqual(res, format(args));
   it('does a basic shallow compare with 2 params', () => {
     test(true, {a: 1}, {a: 1});
     test(false, {a: 1}, {a: 2});

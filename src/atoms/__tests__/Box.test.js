@@ -1,17 +1,15 @@
 import React from 'react';
 import {createRenderer} from 'react-addons-test-utils';
-import jsxEquals from 'jsx-equals';
+import {shallow, mount, render} from 'enzyme';
+
 import Box from '../Box';
+jest.unmock('../Box');
+
+let test = (a, b) => {
+  expect(render(a).text()).toBe(render(b).text());
+};
 
 describe('atoms/Box', () => {
-  let test;
-  beforeEach(() => {
-    var renderer = createRenderer();
-    test = (a, b) => {
-      renderer.render(a);
-      jsxEquals(renderer.getRenderOutput(), b);
-    }
-  });
 
   it('<Box />', () => {
     test(
